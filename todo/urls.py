@@ -9,8 +9,10 @@ router.register(r'todo', ToDoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('add/', AddTodoView.as_view(), name="add-todo"),
+    path("todolist/<int:url>/", TodoAPIView.as_view(), name="todo-api"),
+    path("todolist/add/<int:url>/", AddTodoToListView.as_view(), name="add-todo-to-list"),
     path('', include(router.urls)),
-    path('add/', AddTodoView.as_view(), name="add-todo")
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 

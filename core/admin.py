@@ -6,5 +6,7 @@ class ToDoAdmin(admin.ModelAdmin):
     list_display = ["text", "created", "todo_list"]
 
 
-admin.site.register(ToDoList)
+@admin.register(ToDoList)
+class ToDoListAdmin(admin.ModelAdmin):
+    list_display = ["url", "code"]
 

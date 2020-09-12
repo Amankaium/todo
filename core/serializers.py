@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import ToDo
+from .models import *
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -13,6 +13,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ToDoCreateSerializer(serializers.ModelSerializer):
+    url = serializers.IntegerField(required=False)
     class Meta:
         model = ToDo
-        fields = ['text']
+        fields = ['text', 'url']
+
+
+class ToDoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDo
+        fields = ["text", "created"]
+
+
+class ToDoListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoList
+        fields = ["url"]
