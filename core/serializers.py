@@ -29,3 +29,9 @@ class ToDoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDoList
         fields = ["url"]
+
+
+class ToDoListCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoList
+        fields = ["code"]

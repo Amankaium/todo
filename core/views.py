@@ -28,6 +28,7 @@ class AddTodoView(generics.CreateAPIView):
         todo_list = ToDoList(url=url)
         todo_list.save()
 
+        # add todo object and bind to todolist
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         todo = serializer.save()
@@ -73,6 +74,19 @@ class AddTodoToListView(generics.CreateAPIView):
         d = serializer.data
         d["url"] = url
         return Response(d, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class ToDoListSetPasswordView(generics.UpdateAPIView):
+    serializer_class = ToDoListCodeSerializer
+    lookup_field = "url"
+
+    def get_queryset(self):
+        return ToDoList.objects.filter(url=self.kwargs["url"])
+
+    # def put(self, request, *args, **kwargs):
+    #     url = self.kwargs["url"]
+    #     todolist = ToDoList.objects.get(url=url)
+
 
 
 
